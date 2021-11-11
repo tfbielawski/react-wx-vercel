@@ -6,7 +6,8 @@ const api = {
 
 function App() {
     //Declare and init state to empty str, empty obj
-    const [query, setQuery] = useState("");
+    //const [query, setQuery] = useState("");
+    const [zip, setzip] = useState("");
     const [weather, setWeather] = useState({});
 
     //Define the search function, takes event object
@@ -14,15 +15,16 @@ function App() {
         //If enter key is pressed
         if (evt.key === "Enter") {
             //Call the api, pass in query state
-            fetch(`${api.base}weather?q=${query}&units=imperial&APPID=${api.key}`)
-            //fetch(`${api.base}weather?q=${query}&appid=${api.key}`)
+            //fetch(`${api.base}weather?q=${query}&units=imperial&APPID=${api.key}`)
+            fetch(`${api.base}weather?zip=${zip}&units=imperial&APPID=${api.key}`)
                 //Then get the json promise
                 .then(res => res.json())
                 //Then set weather and query state
                 .then(result => {
                     setWeather(result);
                     //Reset to empty string upon completion to choose new target location
-                    setQuery("");
+                    //setQuery("");
+                    setzip("");
                     console.log(result);
                 });
         }
